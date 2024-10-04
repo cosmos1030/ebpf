@@ -42,7 +42,7 @@ b = BPF(text=program)
 # Attach the eBPF program to the network interface
 function_icmp = b.load_func("icmp_monitor", BPF.SCHED_CLS)
 ip = IPRoute()
-iface_name = "enp0s31f6"  # Name of the network interface on the local computer
+iface_name = "ens4"  # Name of the network interface on the local computer
 interfaces = ip.get_links()
 
 iface_idx = None
@@ -52,14 +52,30 @@ for iface in interfaces:
         break
 
 if iface_idx:
-    # Remove existing clsact
-    ip.tc("del", "clsact", iface_idx)
+    try:
+        # Check if clsact already exists
+        ip.tc("show", iface_idx)  # Try to show existing tc configuration
+
+        # Remove existing clsact (if exists)
+        ip.tc("del", "clsact", iface_idx)
+        print(f"Removed existing clsact from interface {iface_name}")
+    except Exception as e:
+        # If clsact does not exist, log a message but continue
+        print(f"No clsact to remove on {iface_name}: {e}")
 
     # Re-add clsact
-    ip.tc("add", "clsact", iface_idx)
-
+    try:
+        ip.tc("add", "clsact", iface_idx)
+        print(f"Added clsact to interface {iface_name}")
+    except Exception as e:
+        print(f"Error adding clsact to {iface_name}: {e}")
+    
     # Attach the BPF program filter to the interface
-    ip.tc("add-filter", "bpf", iface_idx, ":1", fd=function_icmp.fd, name=function_icmp.name, parent="ffff:fff2", action="ok")
+    try:
+        ip.tc("add-filter", "bpf", iface_idx, ":1", fd=function_icmp.fd, name=function_icmp.name, parent="ffff:fff2", action="ok")
+        print(f"Attached BPF filter to interface {iface_name}")
+    except Exception as e:
+        print(f"Error attaching BPF filter to {iface_name}: {e}")
 
 # Function to print kernel debug messages
 def print_event():

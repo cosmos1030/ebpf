@@ -1,0 +1,5 @@
+2024-10-01 05:22:57.136616 IP (tos 0x0, ttl 61, id 55173, offset 0, flags [DF], proto ICMP (1), length 84)
+    35.202.28.101 > 10.128.0.5: ICMP echo request, id 25, seq 1, length 64
+2024-10-01 05:22:57.136673 IP (tos 0x0, ttl 64, id 4588, offset 0, flags [none], proto ICMP (1), length 84)
+    10.128.0.5 > 35.202.28.101: ICMP echo reply, id 25, seq 1, length 64
+
