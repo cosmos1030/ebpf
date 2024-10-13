@@ -8,7 +8,7 @@ This repository contains scripts designed to monitor system performance and capt
 
 ```
 .
-├── archive                 # Contains additional utility scripts
+├── archive                 # Contains additional utility scripts (not explained here)
 ├── edge
 │   └── remote_monitor.py    # Monitors system performance and captures packet data on the edge
 ├── server
@@ -85,6 +85,40 @@ Codename:       jammy
 
 ---
 
+## Running the Scripts
+
+> **Note:** Due to permission issues when working with eBPF and network interfaces, make sure to run the Python scripts as `root` using `sudo su` to avoid errors.
+
+### Edge (Remote Device)
+
+1. Update `LOCAL_MACHINE_IP`, `LOCAL_MACHINE_PORT`, and `iface_name` in `remote_monitor.py`.
+
+2. Switch to root:
+   ```bash
+   sudo su
+   ```
+
+3. Run the script as `root`:
+   ```bash
+   python remote_monitor.py
+   ```
+
+### Server (Local Machine)
+
+1. Ensure the port number in `local_receiver.py` matches the one used by the remote device.
+
+2. Switch to root:
+   ```bash
+   sudo su
+   ```
+
+3. Start the server as `root`:
+   ```bash
+   python local_receiver.py
+   ```
+
+---
+
 ## Scripts
 
 ### 1. `remote_monitor.py` (Edge)
@@ -110,30 +144,9 @@ This script runs on the local machine, listening for incoming data from the remo
   - Calculates network metrics: throughput, average packet delay, and packet loss (placeholder)
   - Displays data in a human-readable format
 
-- **Usage**:
-  - Ensure the `LISTEN_PORT` matches the port used in `remote_monitor.py`.
-  - Run the script to start the server and wait for connections from the edge devices.
-
----
-
-## How to Run
-
-### Edge (Remote Device)
-1. Update `LOCAL_MACHINE_IP`, `LOCAL_MACHINE_PORT`, and `iface_name` in `remote_monitor.py`.
-2. Run the script:
-   ```bash
-   python remote_monitor.py
-   ```
-
-### Server (Local Machine)
-1. Ensure the port number in `local_receiver.py` matches the one used by the remote device.
-2. Start the server:
-   ```bash
-   python local_receiver.py
-   ```
-
 ---
 
 ## Contact
 
 For any issues or further improvements, feel free to open an issue or submit a pull request.
+
