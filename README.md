@@ -100,7 +100,7 @@ Codename:       jammy
 
 3. Run the script as `root`:
    ```bash
-   python remote_monitor.py
+   python3 remote_monitor.py
    ```
 
 ### Server (Local Machine)
@@ -114,7 +114,7 @@ Codename:       jammy
 
 3. Start the server as `root`:
    ```bash
-   python local_receiver.py
+   python3 local_receiver.py
    ```
 
 ---
@@ -150,3 +150,4 @@ This script runs on the local machine, listening for incoming data from the remo
 
 For any issues or further improvements, feel free to open an issue or submit a pull request.
 
+dddd
