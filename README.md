@@ -1,7 +1,3 @@
-Got it! Here's the revised README based on your updated file structure:
-
----
-
 # Network Monitoring and Packet Capture Tools
 
 ## Overview
