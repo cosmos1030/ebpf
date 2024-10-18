@@ -1,0 +1,61 @@
+version: '3'
+services:
+  server:
+    image: custom-ubuntu-ebpf  # Use the newly created image
+    container_name: server
+    privileged: true  # Grant full privileges
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+    working_dir: /mnt/ebpf
+
+  edge1:
+    image: custom-ubuntu-ebpf  # Use the newly created image
+    container_name: edge1
+    privileged: true  # Grant full privileges
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+    working_dir: /mnt/ebpf
+
+  edge2:
+    image: custom-ubuntu-ebpf  # Use the newly created image
+    container_name: edge2
+    privileged: true  # Grant full privileges
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+    working_dir: /mnt/ebpf
+
+  edge3:
+    image: custom-ubuntu-ebpf  # Use the newly created image
+    container_name: edge3
+    privileged: true  # Grant full privileges
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+    working_dir: /mnt/ebpf
+
+networks:
+  custom_net:
+    driver: bridge
