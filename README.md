@@ -94,7 +94,7 @@ Start one server and three edge device containers using Docker Compose:
 
 ```bash
 docker rm -f server edge1 edge2 edge3  # Remove existing containers if any
-docker-compose up -d                   # Start containers in detached mode
+docker compose up -d                   # Start containers in detached mode
 ```
 
 #### 5. Configure the Edge Devices
