@@ -1,0 +1,32 @@
+services:
+  app1:
+    image: ubuntu
+    container_name: ebpf-app1
+    command: tail -f /dev/null
+    privileged: true  # 전체 권한 부여
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+
+  app2:
+    image: ubuntu
+    container_name: ebpf-app2
+    command: tail -f /dev/null
+    privileged: true  # 전체 권한 부여
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - SYS_PTRACE
+    volumes:
+      - /home/panda/projects/ebpf:/mnt/ebpf
+    networks:
+      - custom_net
+
+networks:
+  custom_net:
+    driver: bridge
