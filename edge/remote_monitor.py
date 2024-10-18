@@ -8,11 +8,11 @@ from collections import deque
 import ctypes
 
 # Define the IP and port of the local machine to send data to
-LOCAL_MACHINE_IP = "10.128.0.5"  # Replace with your local machine's IP
+LOCAL_MACHINE_IP = "172.18.0.3"  # Replace with your local machine's IP
 LOCAL_MACHINE_PORT = 9999  # Ensure this matches the port on the local machine
 
 # Network interface to attach the eBPF program
-iface_name = "ens4"  # Adjust as necessary
+iface_name = "eth0"  # Adjust as necessary
 
 # eBPF program
 program = """
